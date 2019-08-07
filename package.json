@@ -1,0 +1,8 @@
+{
+  "name": "omnistack-2019",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/CWojahn/omnistack-2019.git",
+  "author": "Carlos W. <carloswojahn@gmail.com>",
+  "license": "MIT"
+}
