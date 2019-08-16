@@ -1,3 +1,4 @@
 # omnistack-2019
 
-Estamos no segundo dia
+Código completo da semana Omnistack 2019
+
