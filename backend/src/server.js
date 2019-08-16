@@ -1,5 +1,6 @@
 const express = require('express');
 const mongoose = require('mongoose');
+
 const cors = require('cors');
 
 const routes = require('./routes');
@@ -7,24 +8,24 @@ const routes = require('./routes');
 const app = express();
 const server = require('http').Server(app);
 const io = require('socket.io')(server);
+const connectedUsers = {};
 
-const connectedUsers ={};
-
-io.on('connection', socket =>{
-  const { user } = socket.handshake.query;
+io.on('connection', socket=>{
+  const {user} = socket.handshake.query;
   console.log(user, socket.id);
   connectedUsers[user] = socket.id;
-  
-});
 
+});
 
 mongoose.connect('mongodb+srv://omnistack:Desde_1989@cluster0-5atvi.mongodb.net/omnistack8?retryWrites=true&w=majority',{
   useNewUrlParser: true
 });
 
+app.use((req, res, next)=>{
+  req.io = io;
+  req.connectedUsers = connectedUsers;
 
-app.use((req,res, next)=>{
-  
+  return next();
 });
 
 app.use(cors());
